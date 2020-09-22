@@ -3,10 +3,10 @@
     <Links/>
     <v-container fluid>
       <v-row no-gutters>
-        <v-col cols="1">
+        <v-col cols="1" class="p-fixed">
           <SideBar />
         </v-col>
-        <v-col cols="11">
+        <v-col cols="10" offset="1">
           <v-main>
             <v-container>
               <nuxt />

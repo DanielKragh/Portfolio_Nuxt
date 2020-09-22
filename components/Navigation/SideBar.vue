@@ -1,7 +1,9 @@
 <template>
   <div>
     <div class="logo-con">
-      <nuxt-link to="/" ><span class="logo-con__letter">D</span></nuxt-link>
+      <nuxt-link to="/">
+        <span class="logo-con__letter">D</span>
+      </nuxt-link>
     </div>
     <div class="scroll-con">
       <div class="scroll-con__bar"></div>
@@ -18,9 +20,25 @@ export default {
     };
   },
   methods: {
-    scroll() {}
+    handleScroll() {
+      let scrollPercentage =
+        (document.documentElement.scrollTop + document.body.scrollTop) /
+        (document.documentElement.scrollHeight -
+          document.documentElement.clientHeight) * 100;
+
+      window.console.log(scrollPercentage);
+
+      let sidebar = document.querySelector(".scroll-con__bar-filler");
+      // window.console.log(sidebar);
+      sidebar.style.height = scrollPercentage + '%';
+
+    }
   },
-  mounted() {}
+  mounted() {
+    this.$nextTick(() => {
+       window.addEventListener("scroll", this.handleScroll);
+    });
+  }
 };
 </script>
 
@@ -37,10 +55,9 @@ export default {
   }
 }
 .scroll-con {
-  padding-left: 50%;    
+  padding-left: 50%;
   position: relative;
   &__bar {
-
     background-color: #fff;
     opacity: 0.3;
     width: 1px;
@@ -52,7 +69,6 @@ export default {
     top: 0;
     background-color: #fff;
     width: 1px;
-    height: 100px;
   }
 }
 </style>
